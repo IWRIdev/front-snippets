@@ -1,0 +1,12 @@
+.container
+  %form.form-signin{:method => "POST"}
+    %h2.form-signin-heading Please sign in
+    %label.col-form-label{:for => "inputName"} Username
+    %input#inputName.form-control{:autofocus => "", :name => "name", :placeholder => "username", :required => "", :type => "text"}/
+    %label.col-form-label{:for => "inputPassword"} Password
+    %input#inputPassword.form-control{:name => "password", :placeholder => "password", :required => "", :type => "password"}/
+    .checkbox
+      %label
+        %input{:name => "remember-me", :type => "checkbox", :value => "remember-me"}/
+        Remember me
+    %button.btn.btn-lg.btn-primary.btn-block{:type => "submit"} Sign in
