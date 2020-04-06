@@ -1,0 +1,33 @@
+!!!html5
+
+%head
+  %meta{charset: "utf-8"}/
+  %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+  %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+  %title Translators Dashboard
+
+-# %body
+%div.container
+  %form
+    %div.form-row.pb-md-2
+      %select.form-control.col-md-6#content-selector{disabled: true}
+        %option{disabled: true, selected: true, required: true, value: ""} 
+          content for translation
+        %option= "Blog post 1"
+        %option= "Blog post 2"
+      %button.btn.btn-success.ml-md-2{data_toggle: "tooltip", title: "load content"} +
+    %div.form-row.pb-md-2
+      %select.form-control.col-md-2{autofocus: true}
+        %option{disabled: true, selected: true, required: true, value: ""} 
+          source language
+        %option= "en"
+        %option= "ru"
+      %select.form-control.col-md-2.ml-md-2
+        %option{disabled: true, selected: true, required: true, value: ""} 
+          target language
+        %option= "en"
+        %option= "ru"
+
+
+
+
