@@ -1,0 +1,49 @@
+!!!html5
+
+%head
+  %meta{charset: "utf-8"}/
+  %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+  %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+  %title Translators Dashboard
+
+%body
+  %div.container
+    %form#form-select
+
+      %div.form-row.pb-md-2
+        %select.form-control.col-md-6.state-prop#src-select{name: 'content', required: true}
+          %option{disabled: true, selected: true, hidden: true, value: ""} 
+            content for translation
+          %option{'data-lng': 'en', value: 'blog_post_1'}= "Blog post 1"
+          %option{'data-lng': 'en', value: 'blog_post_2'}= "Blog post 2"
+          %option{'data-lng': 'ru', value: 'blog_post_3'}= "Блог сообщение 3"
+        %div.input-group-button#select-btns
+          %button.btn.btn-secondary.ml-md-3.btn-square#btn-reset{data_toggle: "tooltip", title: "clear", type: "reset"} &#x2718;
+          %button.btn.btn-success.ml-md-1.btn-square#btn-select{data_toggle: "tooltip", title: "load content", type: "button"} &#x2714;
+          
+      %div.form-row.pb-md-2
+        %select.form-control.col-md-2.state-prop#src-lng{autofocus: true, name: 'src_language', required: true}
+          %option{disabled: true, selected: true, hidden: true, value: ""} 
+            source language
+          %option{value: "en"}= "en"
+          %option{value: "ru"}= "ru"
+        %span.col-md-1#tr-arrow &#8658;
+        %select.form-control.col-md-2.state-prop#tgt-lng{name: "tgt_language", required: true}
+          %option{disabled: true, selected: true, hidden: true, value: ""}
+            target language
+          %option{value: "en"}= "en"
+          %option{value: "ru"}= "ru"
+        %div.col-md-5.status-container
+          %span Status:
+          %span.bg-warning.state-prop.status#status-draft{data_toggle: "tooltip", title: "unsaved changes", hidden: true} DRAFT
+          %span.bg-success.state-prop.status#status-saved{data_toggle: "tooltip", title: "all changes saved", hidden: true} SAVED
+          %span.bg-danger.state-prop.status#status-failed{data_toggle: "tooltip", title: "failed to save, try again", hidden: true} FAILED
+
+    %form#form-content
+      %div.form-row.pb-md-2
+        %textarea.form-control.txt-content.state-prop#src-text{readonly: true} 
+        %textarea.form-control.txt-content.state-prop#tr-text{required: true}
+        
+      %div.form-row.col-md-10.save-button-container
+        %button.btn.btn-primary#btn-save{type: "button"} SAVE
+          

@@ -1,0 +1,51 @@
+#tr-arrow {
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#select-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-square {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea.txt-content {
+  width: 45%;
+  height: 70vh;
+  margin: 4px;
+  resize: none;
+}
+
+.status-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.status {
+  font-weight: 700;
+  font-size: large;
+  padding: 0.2em;
+  text-transform: uppercase;
+}
+
+.save-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#btn-save {
+  width: 10%;
+}
