@@ -5,6 +5,12 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula 
         Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
 `
 
+function initDraftToggler(isDisabled = true) {
+  const draftTogglerNode = document.getElementById('toggler-draft')
+  $('#toggler-draft').bootstrapToggle(isDisabled ? 'disable' : 'enable')
+  $('#toggler-draft').bootstrapToggle('off')
+}
+
 function setTargetLanguageSelect() {
   const srcLanguageNode = document.getElementById('src-lng')
   const srcLanguage = srcLanguageNode.value
@@ -23,6 +29,7 @@ function setTargetLanguageSelect() {
       opt.removeAttribute('disabled')
     }
   }
+  $('#tgt-lng').selectpicker('refresh');
 }
 
 function onSourceLanguageSelect(event) {
@@ -39,28 +46,28 @@ function onSourceLanguageSelect(event) {
       opt.removeAttribute('hidden')
     }
   }
-  
+
+  $('#src-select').selectpicker('refresh');
   setTargetLanguageSelect()
 }
 
 function onSourceSelect(event, option) {
-  const srcSelectNode = document.getElementById('src-select')
-  // srcSelectNode.setAttribute('disabled', '')
-  
   const srcLanguageNode = document.getElementById('src-lng')
   srcLanguageNode.value = option.getAttribute('data-lng')
-  // srcLanguageNode.setAttribute('disabled', '')
   
+  $('#src-lng').selectpicker('refresh');
   setTargetLanguageSelect()
 }
 
 function onSelect(event) {
    if($("#form-select")[0].checkValidity()) {
      document.getElementById('src-text').value = demoText
+
      document.getElementById('tgt-lng').setAttribute('disabled', '')
      document.getElementById('src-lng').setAttribute('disabled', '')
      document.getElementById('src-select').setAttribute('disabled', '')
      document.getElementById('status-saved').removeAttribute('hidden')    
+     document.getElementById('tr-text').removeAttribute('disabled')
    } else {  
      $("#form-select")[0].reportValidity();
    }
@@ -76,18 +83,23 @@ function onReset(event) {
         opt.removeAttribute('disabled')
       }
     }
+    selectElem.value = ""
   }
+  $('.selectpicker').selectpicker('refresh');
   
   for (let elem of document.getElementsByClassName('status')) {
-    if (!elem.hasAttribute('hidden')) {
-      elem.setAttribute('hidden', '')
-    }
+    elem.setAttribute('hidden', '')
   }
   
-  document.getElementById('tr-text')
-    .addEventListener('input', onTranslationChanged)
+  const trTextElem = document.getElementById('tr-text')
+  trTextElem.addEventListener('input', onTranslationChanged)
+  trTextElem.setAttribute('disabled', '')
   
   document.getElementById('form-content').reset()
+  
+  document.getElementById('btn-save').setAttribute('disabled', '')
+
+  initDraftToggler()
 }
 
 function setTranslationStatus(status) {
@@ -107,13 +119,21 @@ function setTranslationStatus(status) {
 
 function onTranslationChanged(event) {
   setTranslationStatus('draft')
-  document.getElementById('tr-text').removeEventListener('input', onTranslationChanged)
+  document.getElementById('tr-text')
+    .removeEventListener('input', onTranslationChanged)
+  document.getElementById('btn-save')
+    .removeAttribute('disabled')
+
+  initDraftToggler(false)
 }
 
 function onSave(event) {
   setTranslationStatus('saved')
   document.getElementById('tr-text')
     .addEventListener('input', onTranslationChanged)
+  document.getElementById('btn-save')
+    .setAttribute('disabled', '')
+  initDraftToggler()
 }
 
 document.getElementById('btn-select')
@@ -130,3 +150,7 @@ document.getElementById('tr-text')
   .addEventListener('input', onTranslationChanged)
 document.getElementById('btn-save')
   .onclick = onSave
+
+$.fn.selectpicker.Constructor.BootstrapVersion = '4';
+
+initDraftToggler()

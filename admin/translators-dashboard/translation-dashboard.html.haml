@@ -11,7 +11,7 @@
     %form#form-select
 
       %div.form-row.pb-md-2
-        %select.form-control.col-md-6.state-prop#src-select{name: 'content', required: true}
+        %select.selectpicker.form-control.col-md-6.state-prop#src-select{name: 'content', required: true, "data-style": '', 'data-style-base': 'form-control', 'data-live-search': 'true'}
           %option{disabled: true, selected: true, hidden: true, value: ""} 
             content for translation
           %option{'data-lng': 'en', value: 'blog_post_1'}= "Blog post 1"
@@ -22,13 +22,13 @@
           %button.btn.btn-success.ml-md-1.btn-square#btn-select{data_toggle: "tooltip", title: "load content", type: "button"} &#x2714;
           
       %div.form-row.pb-md-2
-        %select.form-control.col-md-2.state-prop#src-lng{autofocus: true, name: 'src_language', required: true}
+        %select.selectpicker.form-control.col-md-2.state-prop#src-lng{name: 'src_language', required: true, "data-style": '', 'data-style-base': 'form-control'}
           %option{disabled: true, selected: true, hidden: true, value: ""} 
             source language
           %option{value: "en"}= "en"
           %option{value: "ru"}= "ru"
         %span.col-md-1#tr-arrow &#8658;
-        %select.form-control.col-md-2.state-prop#tgt-lng{name: "tgt_language", required: true}
+        %select.selectpicker.form-control.col-md-2.state-prop#tgt-lng{name: "tgt_language", required: true, "data-style": '', 'data-style-base': 'form-control'}
           %option{disabled: true, selected: true, hidden: true, value: ""}
             target language
           %option{value: "en"}= "en"
@@ -45,5 +45,5 @@
         %textarea.form-control.txt-content.state-prop#tr-text{required: true}
         
       %div.form-row.col-md-10.save-button-container
-        %button.btn.btn-primary#btn-save{type: "button"} SAVE
+        %button.btn.btn-primary#btn-save{type: "button", disabled: true} SAVE
           
