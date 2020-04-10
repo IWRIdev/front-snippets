@@ -104,11 +104,9 @@ function onReset(event) {
 
 function setTranslationStatus(status) {
   const id = 'status-' + status
-  console.log(id)
   const statusNodes = document.getElementsByClassName('status')
   
   for (let statusNode of statusNodes) {
-    console.log(statusNode)
     if (statusNode.id == id) {
       statusNode.removeAttribute('hidden')
     } else {
