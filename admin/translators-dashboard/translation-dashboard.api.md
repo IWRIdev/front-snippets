@@ -118,6 +118,13 @@
   },
   ```
 
+#### Open issues
+
+* instead of REST API we can use two POST requests
+  * one for pushing selected content id and target language
+  * second for pushing the translation to the server
+
+  
 
     
       
