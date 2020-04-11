@@ -1,49 +1,59 @@
 !!!html5
 
 %head
-  %meta{charset: "utf-8"}/
-  %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-  %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+  %meta{charset: 'utf-8'}/
+  %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
+  %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
   %title Translators Dashboard
+  %link{href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', rel: 'stylesheet'}
+  %link{href: 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css', rel: 'stylesheet'}
+  %link{href: 'https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css', rel: 'stylesheet'}
+  %link{href: './style.css',:rel: 'stylesheet'}
+  %script{src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js'}
+  %script{src: 'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'}
+  %script{src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'}
+  %script{src: 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js'}
+  %script{src: 'https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js'}
+  -# %script{:src => './script.js'}
 
 %body
   %div.container
     %form#form-select
 
       %div.form-row.pb-md-2
-        %select.selectpicker.form-control.col-md-6.state-prop#src-select{name: 'content', required: true, "data-style": '', 'data-style-base': 'form-control', 'data-live-search': 'true'}
-          %option{disabled: true, selected: true, hidden: true, value: ""} 
+        %select.selectpicker.form-control.col-md-6#src-select{name: 'content', required: true, 'data-style': '', 'data-style-base': 'form-control', 'data-live-search': 'true'}
+          %option{disabled: true, selected: true, hidden: true, value: ''} 
             content for translation
-          %option{'data-lng': 'en', value: 'blog_post_1'}= "Blog post 1"
-          %option{'data-lng': 'en', value: 'blog_post_2'}= "Blog post 2"
-          %option{'data-lng': 'ru', value: 'blog_post_3'}= "Блог сообщение 3"
+          %option{'data-lng': 'en', value: 'blog_post_1'}= 'Blog post 1'
+          %option{'data-lng': 'en', value: 'blog_post_2'}= 'Blog post 2'
+          %option{'data-lng': 'ru', value: 'blog_post_3'}= 'Блог сообщение 3'
         %div.input-group-button#select-btns
-          %button.btn.btn-secondary.ml-md-3.btn-square#btn-reset{data_toggle: "tooltip", title: "clear", type: "reset"} &#x2718;
-          %button.btn.btn-success.ml-md-1.btn-square#btn-select{data_toggle: "tooltip", title: "load content", type: "button"} &#x2714;
+          %button.btn.btn-secondary.ml-md-3.btn-square#btn-reset{data_toggle: 'tooltip', title: 'clear', type: 'reset'} &#x2718;
+          %button.btn.btn-success.ml-md-1.btn-square#btn-select{data_toggle: 'tooltip', title: 'load content', type: 'button'} &#x2714;
           
       %div.form-row.pb-md-2
-        %select.selectpicker.form-control.col-md-2.state-prop#src-lng{name: 'src_language', required: true, "data-style": '', 'data-style-base': 'form-control'}
-          %option{disabled: true, selected: true, hidden: true, value: ""} 
+        %select.selectpicker.form-control.col-md-2#src-lng{name: 'src_language', required: true, 'data-style': '', 'data-style-base': 'form-control'}
+          %option{disabled: true, selected: true, hidden: true, value: ''} 
             source language
-          %option{value: "en"}= "en"
-          %option{value: "ru"}= "ru"
+          %option{value: 'en'}= 'en'
+          %option{value: 'ru'}= 'ru'
         %span.col-md-1#tr-arrow &#8658;
-        %select.selectpicker.form-control.col-md-2.state-prop#tgt-lng{name: "tgt_language", required: true, "data-style": '', 'data-style-base': 'form-control'}
-          %option{disabled: true, selected: true, hidden: true, value: ""}
+        %select.selectpicker.form-control.col-md-2#tgt-lng{name: 'tgt_language', required: true, 'data-style': '', 'data-style-base': 'form-control'}
+          %option{disabled: true, selected: true, hidden: true, value: ''}
             target language
-          %option{value: "en"}= "en"
-          %option{value: "ru"}= "ru"
+          %option{value: 'en'}= 'en'
+          %option{value: 'ru'}= 'ru'
         %div.col-md-5.status-container
           %span Status:
-          %span.bg-warning.state-prop.status#status-draft{data_toggle: "tooltip", title: "unsaved changes", hidden: true} DRAFT
-          %span.bg-success.state-prop.status#status-saved{data_toggle: "tooltip", title: "all changes saved", hidden: true} SAVED
-          %span.bg-danger.state-prop.status#status-failed{data_toggle: "tooltip", title: "failed to save, try again", hidden: true} FAILED
+          %span.bg-warning.status#status-draft{data_toggle: 'tooltip', title: 'unsaved changes', hidden: true} DRAFT
+          %span.bg-success.status#status-saved{data_toggle: 'tooltip', title: 'all changes saved', hidden: true} SAVED
+          %span.bg-danger.status#status-failed{data_toggle: 'tooltip', title: 'failed to save, try again', hidden: true} FAILED
 
     %form#form-content
       %div.form-row.pb-md-2
-        %textarea.form-control.txt-content.state-prop#src-text{readonly: true} 
-        %textarea.form-control.txt-content.state-prop#tr-text{required: true}
+        %textarea.form-control.txt-content#src-text{readonly: true} 
+        %textarea.form-control.txt-content#tr-text{required: true, disabled: true}
         
       %div.form-row.col-md-10.save-button-container
-        %button.btn.btn-primary#btn-save{type: "button", disabled: true} SAVE
-          
+        %input#toggler-draft{type: 'checkbox', 'data-toggle': 'toggler', 'data-on': 'READY', 'data-off': 'DRAFT'}
+        %button.btn.btn-primary.ml-md-3#btn-save{type: 'button', disabled: true} SAVE
